@@ -1,5 +1,13 @@
-cmake_minimum_required(VERSION 3.7.2)
+cmake_minimum_required(VERSION 3.13.0)
 
-project(CherryEngine)
+execute_process(COMMAND git log -n1 --pretty=format:%h OUTPUT_VARIABLE LAST_COMMIT)
 
-add_executable(CherryEngine src/main.cpp)
+project(CherryEngine VERSION 0.0.0)
+
+set(CherryEngine_VERSION_TWEAK 0x${LAST_COMMIT})
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+add_executable(CherryEngine)
+add_subdirectory(src)

@@ -1,0 +1,9 @@
+#ifndef VERSION_H_06022020
+#define VERSION_H_06022020
+
+#define VERSION_MAJOR @CherryEngine_VERSION_MAJOR@
+#define VERSION_MINOR @CherryEngine_VERSION_MINOR@
+#define VERSION_REVISION @CherryEngine_VERSION_PATCH@
+#define VERSION_TWEAK @CherryEngine_VERSION_TWEAK@
+
+#endif
