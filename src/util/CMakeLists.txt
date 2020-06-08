@@ -1,12 +1,13 @@
+configure_file(version.h.in version.h)
 target_sources(CherryEngine PRIVATE
-    CherryEngine.h
+    log.h
+    Exception.h
+    version.h
 
-    main.cpp
-    CherryEngine.cpp
+    log.cpp
+    Exception.cpp
 )
 
 # We configured a file, so we have to tell things where to look
 target_include_directories(CherryEngine PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 target_include_directories(CherryEngine PUBLIC "${CMAKE_CURRENT_SOURCE}")
-
-add_subdirectory(util)
