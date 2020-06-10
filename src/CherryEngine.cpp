@@ -9,6 +9,8 @@
 
 namespace CherryEngine {
 
+Engine::Engine() : Engine(NULL) {}
+
 Engine::Engine(const char* settingsfile)
 {
     // VERSION CHECKS
@@ -56,11 +58,6 @@ Engine::Engine(const char* settingsfile)
     }
 
     // Create window and context
-}
-
-Engine::Engine()
-{
-    Engine(NULL);
 }
 
 Engine::~Engine()
