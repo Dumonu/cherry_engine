@@ -5,10 +5,11 @@
 #include "log.h"
 #include "Exception.h"
 #include "CherryEngine.h"
+#include "settings.h"
 
 namespace CherryEngine {
 
-Engine::Engine()
+Engine::Engine(const char* settingsfile)
 {
     // VERSION CHECKS
     LogDebug("CherryEngine::Engine::Engine - CherryEngine version %i.%i.%i.%x\n",
@@ -40,6 +41,26 @@ Engine::Engine()
         throw Exception("Error initializing GLFW (%d): %s\n", ret, err);
     }
     LogDebug("CherryEngine::Engine::Engine - GLFW Initialized\n");
+
+    if(settingsfile == NULL) // No file given: Default settings
+    {
+        for(int i = 0; i < S_NUM + 1; ++i)
+        {
+            m_settings[i] = DefaultSettingValue[i];
+        }
+        LogDebug("CherryEngine::Engine::Engine - Default Settings Loaded\n");
+    }
+    else
+    {
+        throw Exception("Error initializing CherryEngine: Loading from file not yet implemented\n");
+    }
+
+    // Create window and context
+}
+
+Engine::Engine()
+{
+    Engine(NULL);
 }
 
 Engine::~Engine()

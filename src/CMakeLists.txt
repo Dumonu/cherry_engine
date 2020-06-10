@@ -1,5 +1,7 @@
 target_sources(CherryEngine PRIVATE
     CherryEngine.h
+    settings.h
+    setting_names.h
 
     main.cpp
     CherryEngine.cpp
