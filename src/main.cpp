@@ -1,14 +1,8 @@
 #include <stdio.h>
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#endif
 
 #include <gl/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "global.h"
 #include "CherryEngine.h"
 #include "settings.h"
 #include "Exception.h"
@@ -24,7 +18,7 @@ int main(int argc, char** argv)
                 CherryEngine::DefaultSettingValue[i]);
         }
 
-        sleep(10);
+        engine.Start();
 
         return 0;
     }

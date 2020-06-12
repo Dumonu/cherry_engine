@@ -23,6 +23,8 @@ public:
     Engine(const char* settingsfile);
 
     ~Engine();
+
+    void Start();
 };
 
 }
