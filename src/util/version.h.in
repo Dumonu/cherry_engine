@@ -6,4 +6,8 @@
 #define VERSION_REVISION @CherryEngine_VERSION_PATCH@
 #define VERSION_TWEAK @CherryEngine_VERSION_TWEAK@
 
+#define VERSION_STR "CherryEngine @CherryEngine_VERSION_MAJOR@."\
+    "@CherryEngine_VERSION_MINOR@.@CherryEngine_VERSION_PATCH@."\
+    "@CherryEngine_VERSION_TWEAK@"
+
 #endif
