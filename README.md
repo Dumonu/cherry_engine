@@ -16,4 +16,4 @@ A general purpose game engine.
 ## Stretch Goals
 - Incorporate something like ImGUI for game prototyping
 - Create an editor GUI that generates scene C++ files
-    - call a `startScene(CherryEngine::Engine&)` function or the like
+    - call a `loadScene(CherryEngine::Engine&)` function or the like
