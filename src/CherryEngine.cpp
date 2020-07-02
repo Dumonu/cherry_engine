@@ -133,7 +133,7 @@ void Engine::Start()
     while(!glfwWindowShouldClose(m_window))
     {
         // Update
-        if(glfwGetCurrentContext != m_window)
+        if(glfwGetCurrentContext() != m_window)
         {
             glfwMakeContextCurrent(m_window);
             GLenum err;
