@@ -11,6 +11,18 @@ namespace CherryEngine {
 
 int Engine::instances = 0;
 
+void errCallbackGlfw(int err, const char* desc)
+{
+    LogDebug("GLFW Error (%d): %s\n", err, desc);
+}
+
+void errCallbackGl(GLenum src, GLenum type, GLuint id, GLenum sev, GLsizei len,
+                   const GLchar *msg, const void *userparm)
+{
+    LogDebug("GL %s (type 0x%x, severity 0x%x, id %d): %s\n",
+        (type == GL_DEBUG_TYPE_ERROR ? "Error" : "Message"), type, sev, id, msg);
+}
+
 Engine::Engine() : Engine(NULL) {}
 
 Engine::Engine(const char* settingsfile)
@@ -40,6 +52,7 @@ Engine::Engine(const char* settingsfile)
             glfw_revision
         );
 
+        glfwSetErrorCallback(errCallbackGlfw);
         // LIBRARY INITIALIZATION
         if(!glfwInit())
         {
@@ -48,6 +61,7 @@ Engine::Engine(const char* settingsfile)
             throw Exception("Error initializing GLFW (%d): %s\n", ret, err);
         }
         LogDebug("CherryEngine::Engine::Engine - GLFW Initialized\n");
+
     }
 
     // Load default settings first, then replace with settings in file
@@ -83,6 +97,18 @@ Engine::Engine(const char* settingsfile)
         int ret = glfwGetError(&err);
         throw Exception("Error creating window (%d): %s\n", ret, err);
     }
+    LogDebug("CherryEngine::Engine::Engine - Window Created\n");
+
+    glfwMakeContextCurrent(m_window);
+    // GLEW is a per-context library -> Call glewInit() every time the context switches!
+    GLenum err;
+    if((err = glewInit()) != GLEW_OK)
+    {
+        throw Exception("Error initializing GLEW (%d): %s\n", err,
+            glewGetErrorString(err));
+    }
+    glEnable(GL_DEBUG_OUTPUT);
+    glDebugMessageCallback(errCallbackGl, NULL);
 
     glfwSwapInterval(m_settings[S_VSync]);
 }

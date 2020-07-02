@@ -12,6 +12,7 @@ void LogDebug(const char* fmt, ...) noexcept
 
     // TODO: Add checks for whether we should be logging for debug etc.
     vprintf(fmt, args);
+    fflush(stdout);
 
     va_end(args);
 }

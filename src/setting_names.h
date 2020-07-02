@@ -10,3 +10,6 @@ SETTING(S_Fullscreen, 0)
 // Video Settings
 SETTING(S_VSync, 0)
 SETTING(S_AASamples, 4)
+
+// Misc Settings
+SETTING(S_Debug, 1)
