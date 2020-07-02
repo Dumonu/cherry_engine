@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 #include <gl/glew.h>
 #include <GLFW/glfw3.h>
@@ -7,7 +8,9 @@
 #include "settings.h"
 #include "Exception.h"
 
-int main(int argc, char** argv)
+#include "Shader.h"
+
+int main(void)
 {
     try
     {
@@ -17,6 +20,11 @@ int main(int argc, char** argv)
             printf("%s: %d\n", CherryEngine::SettingNameStr[i],
                 CherryEngine::DefaultSettingValue[i]);
         }
+
+        CherryEngine::Shader shader(2,
+            GL_VERTEX_SHADER, "E:/Other_Stuff/logistic_visualizer/src/logcurve.vert",
+            GL_FRAGMENT_SHADER, "E:/Other_Stuff/logistic_visualizer/src/logcurve.frag"
+        );
 
         engine.Start();
 

@@ -1,10 +1,12 @@
 configure_file(version.h.in version.h)
 target_sources(CherryEngine PRIVATE
     log.h
+    helpers.h
     Exception.h
     version.h
 
     log.cpp
+    helpers.cpp
     Exception.cpp
 )
 
