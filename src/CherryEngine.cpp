@@ -133,6 +133,17 @@ void Engine::Start()
     while(!glfwWindowShouldClose(m_window))
     {
         // Update
+        if(glfwGetCurrentContext != m_window)
+        {
+            glfwMakeContextCurrent(m_window);
+            GLenum err;
+            if((err = glewInit()) != GLEW_OK)
+            {
+                throw Exception("Error initializing GLEW (%d): %s\n", err,
+                    glewGetErrorString(err));
+            }
+        }
+
         glfwSwapBuffers(m_window);
         glfwPollEvents();
     }
