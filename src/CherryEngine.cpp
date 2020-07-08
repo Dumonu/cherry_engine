@@ -110,6 +110,9 @@ Engine::Engine(const char* settingsfile)
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(errCallbackGl, NULL);
 
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
     glfwSwapInterval(m_settings[S_VSync]);
 }
 
