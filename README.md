@@ -2,6 +2,8 @@
 
 A general purpose game engine.
 
+*Everything `gl*` is a C function*
+
 ## Goals
 - Export API to C++ files through a shared library
 - Support the following workflow:
