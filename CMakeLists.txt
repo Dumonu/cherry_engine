@@ -25,6 +25,7 @@ if(MSVC)
     target_compile_options(CherryEngine PRIVATE /W4)
 else()
     target_compile_options(CherryEngine PRIVATE -Wall -Wextra -pedantic)
+    target_link_libraries(CherryEngine GL GLU)
 endif()
 
 target_link_libraries(CherryEngine glfw GLEW::GLEW)
