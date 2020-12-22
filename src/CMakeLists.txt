@@ -3,7 +3,6 @@ target_sources(CherryEngine PRIVATE
     settings.h
     setting_names.h
 
-    main.cpp
     CherryEngine.cpp
 )
 
