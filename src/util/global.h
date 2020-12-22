@@ -1,9 +1,6 @@
 #ifndef GLOBAL_H_06112020
 #define GLOBAL_H_06112020
 
-#define EXPORT
-#define LOCAL
-/*
 #ifdef CE_PLAT_WIN32
     #ifdef CE_BUILDING_LIB
         #ifdef __GNUC__
@@ -28,6 +25,5 @@
         #define LOCAL
     #endif
 #endif
-*/
 
 #endif
