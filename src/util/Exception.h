@@ -3,9 +3,11 @@
 
 #include <string>
 
+#include "global.h"
+
 namespace CherryEngine {
 
-class Exception
+class EXPORT Exception
 {
 public:
 	Exception() noexcept;
@@ -16,7 +18,9 @@ public:
 	Exception& operator=(const Exception& other) noexcept;
 	const char* what() const noexcept;
 private:
-	std::string msg;
+	// This is a C-str because MSVC throws warning C4251 when exporting a class
+	// with an STL member. This is due to potential ABI mismatches.
+	char msg[1024];
 };
 
 }

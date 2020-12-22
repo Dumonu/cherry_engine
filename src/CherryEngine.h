@@ -1,14 +1,15 @@
 #ifndef CHERRYENGINE_H_06042020
 #define CHERRYENGINE_H_06042020
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "global.h"
 #include "settings.h"
 
 namespace CherryEngine {
 
-class Engine {
+class EXPORT Engine {
     static int instances;
 
     int m_settings[S_NUM + 1];

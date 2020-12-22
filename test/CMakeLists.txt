@@ -1,2 +1,3 @@
 add_executable(basic_test basic_test.cpp)
+arch_def(basic_test)
 target_link_libraries(basic_test CherryEngine)

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include "CherryEngine.h"
@@ -22,8 +22,8 @@ int main(void)
         }
 
         CherryEngine::Shader shader(2,
-            GL_VERTEX_SHADER, "E:/Other_Stuff/logistic_visualizer/src/logcurve.vert",
-            GL_FRAGMENT_SHADER, "E:/Other_Stuff/logistic_visualizer/src/logcurve.frag"
+            GL_VERTEX_SHADER,   "test/basic_test.vert",
+            GL_FRAGMENT_SHADER, "test/basic_test.frag"
         );
 
         engine.Start();

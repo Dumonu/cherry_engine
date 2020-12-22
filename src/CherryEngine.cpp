@@ -1,4 +1,4 @@
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #include "version.h"
@@ -135,7 +135,6 @@ void Engine::Start()
     // Initialization
     while(!glfwWindowShouldClose(m_window))
     {
-        // Update
         if(glfwGetCurrentContext() != m_window)
         {
             glfwMakeContextCurrent(m_window);
@@ -146,6 +145,14 @@ void Engine::Start()
                     glewGetErrorString(err));
             }
         }
+
+        // Get Input
+        
+        // Update
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+        
+        // Draw
 
         glfwSwapBuffers(m_window);
         glfwPollEvents();

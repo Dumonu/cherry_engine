@@ -16,8 +16,41 @@ set(CherryEngine_VERSION_TWEAK 0x${LAST_COMMIT})
 find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)
 
+function(arch_def tgt)
+    if(CMAKE_SYSTEM_NAME STREQUAL Windows)
+        # SUPPORTED
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_WIN32)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL Darwin)
+        # PLAN TO SUPPORT
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_MACOSX)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL Linux)
+        # SUPPORTED
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_LINUX)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL Android)
+        # NOT SUPPORTED
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_ANDROID)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL FreeBSD)
+        # NOT SUPPORTED
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_FREEBSD)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL CrayLinuxEnvironment)
+        # NOT SUPPORTED
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_CRAY)
+    elseif(CMAKE_SYSTEM_NAME STREQUAL MSYS)
+        # NOT SUPPORTED
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_MSYS)
+    else()
+        target_compile_definitions(${tgt} PRIVATE CE_PLAT_UNKNOWN)
+    endif()
+
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        target_compile_definitions(${tgt} PRIVATE CE_ARCH_64BIT)
+    else()
+        target_compile_definitions(${tgt} PRIVATE CE_ARCH_32BIT)
+    endif()
+endfunction()
+
 # Create an executable target - CherryEngine.exe
-add_library(CherryEngine)
+add_library(CherryEngine SHARED)
 add_subdirectory(src)  # sources are in the src directory
 add_subdirectory(test) # test files are in the test directory
 
@@ -29,4 +62,7 @@ else()
     target_link_libraries(CherryEngine GL GLU) # required for linking on Linux, but not necessarily Windows
 endif()
 
+arch_def(CherryEngine)
+
+target_compile_definitions(CherryEngine PRIVATE CE_BUILDING_LIB)
 target_link_libraries(CherryEngine glfw GLEW::GLEW)

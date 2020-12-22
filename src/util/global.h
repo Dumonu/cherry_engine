@@ -1,13 +1,33 @@
 #ifndef GLOBAL_H_06112020
 #define GLOBAL_H_06112020
 
-// This header is meant to convert unistd.h calls to Windows.h calls when relevant.
-
-#ifdef _WIN32
-#include <Windows.h>
-#define sleep(x) Sleep((x) * 1000)
+#define EXPORT
+#define LOCAL
+/*
+#ifdef CE_PLAT_WIN32
+    #ifdef CE_BUILDING_LIB
+        #ifdef __GNUC__
+            #define EXPORT __attribute__ ((dllexport))
+        #else
+            #define EXPORT __declspec(dllexport)
+        #endif
+    #else
+        #ifdef __GNUC__
+            #define EXPORT __attribute__ ((dllimport))
+        #else
+            #define EXPORT __declspec(dllimport)
+        #endif
+    #endif
+    #define LOCAL
 #else
-#include <unistd.h>
+    #if __GNUC__ >= 4
+        #define EXPORT __attribute__ ((visibility ("default")))
+        #define LOCAL  __attribute__ ((visibility ("hidden")))
+    #else
+        #define EXPORT
+        #define LOCAL
+    #endif
 #endif
+*/
 
 #endif

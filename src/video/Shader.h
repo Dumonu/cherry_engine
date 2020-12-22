@@ -4,14 +4,16 @@
 #include <memory>
 #include <vector>
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
+#include "global.h"
 
 namespace CherryEngine
 {
 
 // FOR INTERNAL USE ONLY
-class internal_shader
+class EXPORT internal_shader
 {
     GLuint m_shader = 0;
     friend class internal_program;
@@ -27,7 +29,7 @@ public:
 };
 
 // FOR INTERNAL USE ONLY
-class internal_program
+class EXPORT internal_program
 {
     GLuint m_program = 0;
     friend class Shader;
@@ -44,7 +46,7 @@ public:
 
 // Manages a shader program
 // It is safe to copy the Shader because it uses a shared_ptr to manage the program
-class Shader
+class EXPORT Shader
 {
     std::shared_ptr<internal_program> m_program;
     std::vector<std::shared_ptr<internal_shader>> m_shaders;
